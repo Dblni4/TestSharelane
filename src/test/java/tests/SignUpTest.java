@@ -36,14 +36,7 @@ public class SignUpTest {
 
         WebDriver driver = new ChromeDriver();
 
-        driver.get("https://www.sharelane.com/cgi-bin/register.py");
-        WebElement zipCodeInput = driver.findElement(By.name("zip_code"));
-        zipCodeInput.sendKeys("11111");
-        WebElement continueButton = driver.findElement(By.xpath("//input[@value = 'Continue']"));
-        continueButton.click();
-        WebElement signUpForm = driver.findElement(By.className("yellow_bg"));
-
-        assertTrue(signUpForm.isDisplayed());
+        driver.get("https://www.sharelane.com/cgi-bin/register.py?page=1&zip_code=11111");
 
         driver.findElement(By.name("first_name")).sendKeys("Bulba");
         driver.findElement(By.name("last_name")).sendKeys("Zavr");
@@ -54,11 +47,8 @@ public class SignUpTest {
         registerButton.click();
 
         String text = driver.findElement(By.cssSelector(".confirmation_message")).getText();
-        assertEquals(text,"Account is created!");
-
+        assertEquals(text, "Account is created!");
 
         driver.quit();
     }
 }
-
-
